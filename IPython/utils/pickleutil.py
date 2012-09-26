@@ -116,6 +116,8 @@ def canDict(obj):
 def canSequence(obj):
     if isinstance(obj, (list, tuple)):
         t = type(obj)
+        if hasattr(t, '_make'):
+            t = t._make
         return t([can(i) for i in obj])
     else:
         return obj
